@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import RegisterForm from "../components/RegisterForm";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
@@ -34,6 +37,7 @@ const RegisterPage = () => {
       // Handle successful response
       setResponse(response.data);
       console.log("Registration successful:", response.data);
+      navigate("/admin-dashboard");
     } catch (err) {
       // Handle error
       setError(err.response?.data?.error || err.message);

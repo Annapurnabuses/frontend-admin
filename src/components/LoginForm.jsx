@@ -2,8 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import React from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ handleLogin, loading, error, response }) => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -20,7 +23,7 @@ const LoginForm = ({ handleLogin, loading, error, response }) => {
     <div className="flex h-screen">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-6 max-w-lg h-fit m-auto bg-amber-200 p-2 rounded-sm"
+        className="flex flex-col gap-6 max-w-lg h-fit m-auto bg-amber-200 p-2 py-6 rounded-sm"
       >
         <h1 className="mx-auto">LOGIN</h1>
         {/* register your input into the hook by invoking the "register" function */}
@@ -46,6 +49,12 @@ const LoginForm = ({ handleLogin, loading, error, response }) => {
         <Button disabled={loading} type="submit">
           LOGIN
         </Button>
+        <p
+          onClick={() => navigate("/reset-password")}
+          className="cursor-pointer underline text-indigo-700"
+        >
+          Forgot Password?
+        </p>
       </form>
     </div>
   );

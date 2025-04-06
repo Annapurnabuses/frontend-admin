@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
@@ -32,6 +35,8 @@ const LoginPage = () => {
 
       // Store token in localStorage for future authenticated requests
       localStorage.setItem("authToken", response.data.token);
+
+      navigate("/admin-dashboard");
 
       // You might want to store user info or redirect the user here
       // Example: localStorage.setItem('user', JSON.stringify(response.data.user));

@@ -6,7 +6,7 @@ import AdminPage from "./Pages/AdminPage";
 
 function App() {
   return (
-    <>
+    <div className="text-zinc-800">
       <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
@@ -14,7 +14,7 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminPage />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 
