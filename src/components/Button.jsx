@@ -3,7 +3,9 @@ import React from "react";
 const Button = ({ disabled, onClick, type, className, children }) => {
   return (
     <button
-      className={`${className} bg-black py-2 px-4 text-center text-white rounded-sm font-black cursor-pointer`}
+      className={` py-2 px-4 text-center  rounded-sm font-black cursor-pointer ${
+        className ? className : " bg-black text-white "
+      }`}
       type={type}
       onClick={onClick}
       disabled={disabled}

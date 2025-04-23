@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpNarrowWide } from "lucide-react";
 
 const BookingsTable = ({ data }) => {
   // Format date to display in readable format
@@ -22,14 +23,19 @@ const BookingsTable = ({ data }) => {
         return "bg-yellow-100 text-yellow-800";
     }
   };
+
   return (
-    <div className="w-[95%] overflow-x-auto text-sm m-4 mx-auto">
-      <table className="min-w-full bg-white border border-zinc-300 rounded-lg border-collapse">
+    <div className="w-[95%] overflow-x-auto overflow-y-auto text-sm m4 mx-auto  border border-zinc-300 rounded-lg max-h-[85svh]">
+      <table className="min-w-full bg-white border-collapse overflow-y-scroll max-h-[30%]">
         <thead>
-          <tr className="bg-gray-100 text-gray-700 text-left rounded-lg">
+          <tr className="bg-gray-100 text-gray-700 text-left rounded-lg border-l-2 border-l-zinc-200">
             <th className="p-3 font-medium">Customer</th>
             {/* <th className="p-3 font-medium">Vehicle</th> */}
-            <th className="p-3 font-medium">Trip Details</th>
+            <th className="p-3 font-medium">
+              <span className="flex justify-start gap-2 items-center">
+                Trip Details <ArrowUpNarrowWide />
+              </span>
+            </th>
             <th className="p-3 font-medium hidden sm:block">Payment</th>
             <th className="p-3 font-medium text-center">Status</th>
           </tr>
@@ -40,28 +46,30 @@ const BookingsTable = ({ data }) => {
               key={booking.user}
               className={`${
                 index % 2 == 0 ? "" : "bg-zinc-200"
-              } hover: cursor-pointer`}
+              } hover:border-l-2 hover:border-l-amber-300 border-l-2 border-l-zinc-200 cursor-pointer`}
             >
               <td className="p-3">
-                <div className="font-medium">{booking.name}</div>
+                <div className="font-medium wrap-break-word max-w-[170px]">
+                  {booking.name}
+                </div>
                 <div className="text-sm text-gray-500">{booking.phone}</div>
               </td>
               {/* <td className="p-3">
                 <div>{booking.vehicleTypeRequested}</div>
                 <div className="text-sm text-gray-500">
-                  {booking.additionalRequirement}
+                {booking.additionalRequirement}
                 </div>
-              </td> */}
+                </td> */}
               <td className="p-3">
                 <div className="text-sm">
                   <div>
                     {formatDate(booking.startDate)} -{" "}
                     {formatDate(booking.endDate)}
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-gray-500 wrap-break-word max-w-[170px]">
                     From: {booking.pickupLocation}
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-gray-500 wrap-break-word max-w-[170px]">
                     To: {booking.dropLocation}
                   </div>
                 </div>
@@ -90,6 +98,9 @@ const BookingsTable = ({ data }) => {
                   >
                     {booking.status}
                   </span>
+                </div>
+                <div className="text-sm text-gray-500 text-center">
+                  {booking.status == "Approved" ? booking.assignedVehicle : ""}
                 </div>
               </td>
             </tr>
